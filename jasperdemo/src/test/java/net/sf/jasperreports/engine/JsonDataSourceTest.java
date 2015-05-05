@@ -7,10 +7,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import net.sf.jasperreports.engine.base.JRBaseSubreport;
 import net.sf.jasperreports.engine.query.JsonQueryExecuterFactory;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 import org.junit.Test;
 
@@ -18,6 +21,7 @@ public class JsonDataSourceTest {
 
 	private String inputFileNameSubReport = "/reports/demo/jsondatasource/JsonOrdersReport.jrxml";
 	private String inputFileNameReport = "/reports/demo/jsondatasource/JsonCustomersReport.jrxml";
+	private String inputJsonData = "/data/northwind.json";
 
 	@Test
 	public void testFill() throws JRException, IOException, Exception {
@@ -27,6 +31,7 @@ public class JsonDataSourceTest {
 		params.put(JsonQueryExecuterFactory.JSON_DATE_PATTERN, "yyyy-MM-dd");
 		params.put(JsonQueryExecuterFactory.JSON_NUMBER_PATTERN, "#,##0.##");
 		params.put(JsonQueryExecuterFactory.JSON_LOCALE, Locale.ENGLISH);
+		params.put(JsonQueryExecuterFactory.JSON_INPUT_STREAM, getInputStreamData());
 		params.put(JRParameter.REPORT_LOCALE, Locale.US);
 
 		JasperCompileManager
@@ -36,7 +41,7 @@ public class JsonDataSourceTest {
 		String masterReport = JasperCompileManager
 				.compileReportToFile(getPath(JsonDataSourceTest.class
 						.getResource(inputFileNameReport)));
-
+		
 		JasperPrint jasperPrint = JasperFillManager.fillReport(masterReport,
 				params);
 
@@ -53,6 +58,10 @@ public class JsonDataSourceTest {
 		System.err.println("Filling time : "
 				+ (System.currentTimeMillis() - start));
 
+	}
+
+	private Object getInputStreamData() {
+		return JsonDataSourceTest.class.getResourceAsStream(inputJsonData);
 	}
 
 	private String getPath(URL url) throws URISyntaxException {
