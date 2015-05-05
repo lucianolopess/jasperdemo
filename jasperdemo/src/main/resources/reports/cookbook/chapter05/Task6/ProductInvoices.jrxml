@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProductInvoices" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0">
+	<parameter name="CustomerName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+ 	*
+FROM
+	"public"."CustomerInvoices"
+WHERE 
+	"public"."CustomerInvoices"."CustomerName" = $P{CustomerName}]]>
+	</queryString>
+	<field name="InvoiceID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoicePeriod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoiceValue" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="10" y="3" width="90" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="446" y="4" width="90" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="17" y="4" width="85" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="457" y="5" width="79" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Value($)]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="360" y="3" width="82" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="233" y="3" width="124" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="257" y="3" width="100" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="366" y="4" width="76" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Month]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="105" y="3" width="124" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="129" y="3" width="100" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="25" width="526" height="2"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="0" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{InvoiceID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="72" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{InvoiceValue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="0" width="114" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="72" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{InvoicePeriod}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="20" width="526" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="243" y="2" width="114" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ProductName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="2" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>

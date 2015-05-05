@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/wizardtemplate.xhtml">
+	<ui:param name="title" value="Second step" />
+	<ui:define name="stepBody">
+		<h:outputLabel value="Street:" />
+		<h:inputText value="#{userWizard.user.address.street}" />
+		<h:outputLabel value="Number:" />
+		<h:inputText value="#{userWizard.user.address.number}" />
+		<h:outputLabel value="Postal code:" />
+		<h:inputText value="#{userWizard.user.address.postalCode}" />
+		<h:outputLabel value="City:" />
+		<h:inputText value="#{userWizard.user.address.city}" />
+		<h:outputLabel value="Country:" />
+		<h:inputText value="#{userWizard.user.address.country}" />
+	</ui:define>
+</ui:composition>

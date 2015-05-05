@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="2DPageCount" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<queryString>
+		<![CDATA[SELECT
+*
+FROM
+     "public"."CustomerInvoices" 
+Order By "CustomerName"]]>
+	</queryString>
+	<field name="InvoiceID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoicePeriod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoiceValue" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="GroupPageCount" class="java.lang.Integer" resetType="Group" resetGroup="Customer" incrementType="Page" calculation="Count">
+		<variableExpression><![CDATA[$V{GroupPageCount}]]></variableExpression>
+	</variable>
+	<group name="Customer" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{CustomerName}]]></groupExpression>
+		<groupHeader>
+			<band height="50"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="52" y="12" width="342" height="37"/>
+				<textElement>
+					<font fontName="Verdana" size="24" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Monthly Customer Invoices]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="82" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="360" y="63" width="82" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="105" y="63" width="124" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="366" y="64" width="76" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="64" width="100" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="233" y="63" width="124" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="10" y="63" width="90" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="246" y="64" width="100" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="64" width="85" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Number]]></text>
+			</staticText>
+			<rectangle radius="5">
+				<reportElement key="rectangle-3" x="446" y="64" width="90" height="16" forecolor="#000000" backcolor="#D8DADB"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="457" y="64" width="79" height="16"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Value($)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="13" width="248" height="25"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="13" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<elementGroup/>
+			<elementGroup/>
+			<textField>
+				<reportElement x="17" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{InvoiceID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ProductName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{InvoicePeriod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Float"><![CDATA[$F{InvoiceValue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="17" y="12" width="199" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{GroupPageCount}+" of "+$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="12" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="500" y="12" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="39" splitType="Stretch"/>
+	</summary>
+</jasperReport>

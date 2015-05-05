@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2015-01-14T10:19:53 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HeaderMarginAndAlignmentSample" language="groovy" pageWidth="595" pageHeight="842" columnWidth="539" leftMargin="36" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ffc90643-908a-4931-8e3e-e34a978404a4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasperdb1"/>
+	<queryString>
+		<![CDATA[select * from "CustomerInvoices"]]>
+	</queryString>
+	<field name="InvoiceID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoicePeriod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoiceValue" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="115" y="4" width="350" height="37" uuid="7f772cdd-301c-4644-8a5c-98b7fb2b775e"/>
+				<textElement>
+					<font fontName="Verdana" size="24"/>
+				</textElement>
+				<text><![CDATA[Monthly Customer Invoices]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="11" width="100" height="20" uuid="b7a0087a-4a8d-4e29-b771-5e2c34684817"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="35" width="89" height="20" uuid="86af9f3f-ce05-414f-b402-9bec4da493c4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Period:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="11" width="100" height="20" uuid="7d60e141-33ef-475a-9bff-ddfb164ced1b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="268" y="35" width="100" height="20" uuid="b3653e00-8971-4ce4-99da-af447a879d87"/>
+				<textFieldExpression><![CDATA[$F{InvoicePeriod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="11" width="100" height="20" uuid="1221a6b9-bed6-4d74-82b7-4fdc5834f2e5"/>
+				<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="11" width="100" height="20" uuid="caec43cb-c42e-4cc0-91a4-6bf87ebbcb38"/>
+				<textFieldExpression><![CDATA[$F{ProductName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

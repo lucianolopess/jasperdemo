@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperTemplate PUBLIC "-//JasperReports//DTD Template//EN" "http://jasperreports.sourceforge.net/dtds/jaspertemplate.dtd">
+
+<jasperTemplate>
+	<style name="BigBoldRed" isDefault="false" forecolor="#FF0000" fontSize="24">
+		<pen lineWidth="4.0"/>
+	</style>
+</jasperTemplate>

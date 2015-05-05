@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/wizardtemplate.xhtml">
+	<ui:param name="title" value="Summary" />
+	<ui:define name="stepBody">
+		<h:outputLabel value="First name:" />
+		<h:outputText value="#{userWizard.user.firstName}" />
+		<h:outputLabel value="Middle name:" />
+		<h:outputText value="#{userWizard.user.middleName}" />
+		<h:outputLabel value="Last name:" />
+		<h:outputText value="#{userWizard.user.lastName}" />
+		<h:outputLabel value="Birth date:" />
+		<h:outputText value="#{userWizard.user.birthDate}">
+			<f:convertDateTime pattern="dd-MM-yyyy" />
+		</h:outputText>
+		<h:outputLabel value="Street:" />
+		<h:outputText value="#{userWizard.user.address.street}" />
+		<h:outputLabel value="Number:" />
+		<h:outputText value="#{userWizard.user.address.number}" />
+		<h:outputLabel value="Postal code:" />
+		<h:outputText value="#{userWizard.user.address.postalCode}" />
+		<h:outputLabel value="City:" />
+		<h:outputText value="#{userWizard.user.address.city}" />
+		<h:outputLabel value="Country:" />
+		<h:outputText value="#{userWizard.user.address.country}" />
+		<h:outputLabel value="Phone:" />
+		<h:outputText value="#{userWizard.user.phone}" />
+		<h:outputLabel value="Mobile:" />
+		<h:outputText value="#{userWizard.user.mobile}" />
+		<h:outputLabel value="Email:" />
+		<h:outputText value="#{userWizard.user.email}" />
+	</ui:define>
+</ui:composition>

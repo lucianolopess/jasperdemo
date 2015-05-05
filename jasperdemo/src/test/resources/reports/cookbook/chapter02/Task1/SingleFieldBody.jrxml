@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2015-01-14T11:20:01 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SingleFieldBody" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7ac8029f-c5fd-4ff5-8e04-ad5ab951c8ad">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasperdb2"/>
+	<queryString>
+		<![CDATA[select * from "public"."CustomerInvoices"
+where "public"."CustomerInvoices"."CustomerName" = 'Packt Publishing'
+and "public"."CustomerInvoices"."InvoicePeriod" = 'Mar09']]>
+	</queryString>
+	<field name="InvoiceID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoicePeriod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoiceValue" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="17" width="397" height="37" uuid="e070eee4-1198-4085-b266-48149234d986"/>
+				<textElement>
+					<font fontName="Verdana" size="23"/>
+				</textElement>
+				<text><![CDATA[Monthly Customer Invoice Values]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="128" y="12" width="176" height="20" uuid="df315c4d-3b85-48a2-a404-06729c632b7e"/>
+				<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="11" width="100" height="20" uuid="3b7963ff-ec2f-4f12-957a-da85669b5377"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="11" width="100" height="20" uuid="37e15e74-34a6-4a3f-bd9c-4f727ae6be7c"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Period:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="422" y="11" width="100" height="20" uuid="9c0282d9-1f9d-4063-9207-c817d5a86e7f"/>
+				<textFieldExpression><![CDATA[$F{InvoicePeriod}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="100" height="20" uuid="29fee0ba-748b-4b74-9fac-72f33feeed83"/>
+				<text><![CDATA[Invoice Value:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="12" width="100" height="20" uuid="fb718395-3433-4877-9f18-bbde13ca51c4"/>
+				<textFieldExpression><![CDATA[$F{InvoiceValue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="33" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="36" splitType="Stretch"/>
+	</summary>
+</jasperReport>

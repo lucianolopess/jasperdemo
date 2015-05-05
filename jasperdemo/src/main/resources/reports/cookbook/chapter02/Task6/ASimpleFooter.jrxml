@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ASimpleFooter" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="CustomerName" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="InvoicePeriod" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select * from "public"."CustomerInvoices"
+WHERE	"public"."CustomerInvoices"."CustomerName" = 'Packt Publishing' AND
+        "public"."CustomerInvoices"."InvoicePeriod" = 'Mar09']]>
+	</queryString>
+	<field name="InvoiceID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoicePeriod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoiceValue" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="39" width="512" height="21"/>
+				<textElement>
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[All invoices for a specific customer, in a specific period of time and for a specific product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="2" width="339" height="37"/>
+				<textElement>
+					<font fontName="Verdana" size="24"/>
+				</textElement>
+				<text><![CDATA[Monthly Customer Invoices]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="73" splitType="Stretch">
+			<textField>
+				<reportElement x="128" y="12" width="176" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CustomerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="11" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="12" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Period :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="436" y="11" width="93" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{InvoicePeriod}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="42" width="202" height="20"/>
+				<textElement/>
+				<text><![CDATA[The total number of invoice(s) in this report :]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="228" y="42" width="122" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="26" y="26" width="116" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  InvoiceID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="26" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Invoice Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="26" width="187" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="26" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Invoice Value ($)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<rectangle>
+				<reportElement x="25" y="1" width="117" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="142" y="1" width="100" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="242" y="1" width="187" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="429" y="1" width="100" height="20"/>
+			</rectangle>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="276" height="20" isPrintInFirstWholeBand="true"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{JASPER_REPORT}.getName() + "designed by PACKT"]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="455" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

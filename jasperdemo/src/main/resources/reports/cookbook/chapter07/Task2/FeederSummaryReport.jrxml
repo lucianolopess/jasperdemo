@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FeederSummaryReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="FeederID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BillingMonth" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\ProjetosBpms\\wizard\\src\\main\\resources\\reports\\cookbook\\chapter07\\Task2\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select 
+	*
+From
+	"Feeder"
+Where
+	"Feeder"."FeederID" = $P{FeederID}]]>
+	</queryString>
+	<field name="SID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FeederID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TransformerID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="88" y="23" width="379" height="33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Sans" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monthly Feeder Billing Summary]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="8" width="100" height="20"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{FeederID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="8" width="75" height="20"/>
+				<textElement>
+					<font fontName="Lucida Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Feeder ID:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="212" y="8" width="62" height="20"/>
+				<textElement>
+					<font fontName="Lucida Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Month:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="33" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="274" y="8" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{BillingMonth}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="202" y="3" width="115" height="20" backcolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="212" y="4" width="95" height="18" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="none">
+					<font fontName="Lucida Sans" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Bill Value]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="15" y="5" width="142" height="20" backcolor="#000000"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="27" y="6" width="123" height="18" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="none">
+					<font fontName="Lucida Sans" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[Transformer ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="5" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{TransformerID}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="212" y="6" width="200" height="19"/>
+				<subreportParameter name="BillingMonth">
+					<subreportParameterExpression><![CDATA[$P{BillingMonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="TransformerID">
+					<subreportParameterExpression><![CDATA[$F{TransformerID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "MonthlyTransformerBill.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

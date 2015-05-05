@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MaxValueOfAColumn" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<queryString>
+		<![CDATA[SELECT 
+	* 
+FROM 
+	"public"."productionsummary_ch4"
+ORDER BY
+	"productname"]]>
+	</queryString>
+	<field name="seq_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="productname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="semifinished_qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="trimmed_qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="finished_qty" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="MaxValue" class="java.lang.Integer" resetType="Group" resetGroup="Product" calculation="Highest">
+		<variableExpression><![CDATA[$F{finished_qty}]]></variableExpression>
+	</variable>
+	<variable name="MaxValueDate" class="java.util.Date">
+		<variableExpression><![CDATA[($V{MaxValue}.intValue() == $F{finished_qty}.intValue() ? $F{date} :$V{MaxValueDate})]]></variableExpression>
+	</variable>
+	<group name="Product">
+		<groupExpression><![CDATA[$F{productname}]]></groupExpression>
+		<groupHeader>
+			<band height="42">
+				<staticText>
+					<reportElement x="15" y="19" width="114" height="20" forecolor="#009999"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Product Name :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="132" y="19" width="188" height="20" forecolor="#009999"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{productname}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="40">
+				<textField>
+					<reportElement x="107" y="10" width="340" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA["Maximum Production " + $V{MaxValue} + " pieces occurred on "+$V{MaxValueDate}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="115" y="15" width="325" height="37"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Production Summary]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="39" backcolor="#009999"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="13" width="97" height="16" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="4" width="102" height="31" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SemiFinished
+(Qty.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="4" width="97" height="31" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trimmed
+(Qty.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="4" width="108" height="31" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Finished Prod.
+(Qty.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="13" width="103" height="16" forecolor="#FFFFFF"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="18" y="6" width="97" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="231" y="6" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{semifinished_qty}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="333" y="6" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{trimmed_qty}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="436" y="6" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{finished_qty}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="29" width="555" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="115" y="6" width="114" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{productname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="34" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="343" y="5" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="423" y="5" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="37" splitType="Stretch"/>
+	</summary>
+</jasperReport>

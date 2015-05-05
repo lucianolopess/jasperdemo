@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Feeder_BarChart" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<queryString>
+		<![CDATA[Select * From "Feeder", "Transformer"
+order by "FeederID", "Date"]]>
+	</queryString>
+	<field name="SID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FeederID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TransformerID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ConsumerID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Month" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Bill" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Bill_1" class="java.lang.Integer" resetType="Group" resetGroup="Month" calculation="Sum">
+		<variableExpression><![CDATA[$F{Bill}]]></variableExpression>
+	</variable>
+	<group name="Feeder">
+		<groupExpression><![CDATA[$F{FeederID}]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<rectangle radius="10">
+					<reportElement x="123" y="28" width="89" height="20" backcolor="#000000"/>
+				</rectangle>
+				<line>
+					<reportElement x="1" y="22" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="1.75" lineStyle="Solid"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="1.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="11" y="4" width="75" height="20"/>
+					<textElement>
+						<font fontName="Lucida Sans" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Feeder ID:]]></text>
+				</staticText>
+				<rectangle radius="10">
+					<reportElement x="5" y="29" width="89" height="20" backcolor="#000000"/>
+				</rectangle>
+				<staticText>
+					<reportElement mode="Transparent" x="15" y="30" width="69" height="18" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="none">
+						<font fontName="Lucida Sans" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					</textElement>
+					<text><![CDATA[Month ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="133" y="29" width="69" height="18" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="none">
+						<font fontName="Lucida Sans" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					</textElement>
+					<text><![CDATA[Bill Value]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Transparent" x="82" y="4" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single" markup="none">
+						<font fontName="sansserif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{FeederID}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Month">
+		<groupExpression><![CDATA[$F{Date}.getMonth()+"-"+$F{Date}.getYear()]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField pattern="MMM-yy">
+					<reportElement mode="Transparent" x="11" y="0" width="83" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+						<font fontName="sansserif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{Date}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Month">
+					<reportElement mode="Transparent" x="123" y="0" width="67" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" lineSpacing="Single" markup="none">
+						<font fontName="sansserif" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Bill_1}]]></textFieldExpression>
+				</textField>
+				<barChart>
+					<chart isShowLegend="false" evaluationTime="Group" evaluationGroup="Month">
+						<reportElement x="300" y="0" width="200" height="20"/>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset resetType="Group" resetGroup="Month"/>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{FeederID}]]></seriesExpression>
+							<categoryExpression><![CDATA[($F{Date}.getMonth()+1)+"/"+($F{Date}.getYear()+1900)]]></categoryExpression>
+							<valueExpression><![CDATA[$V{Bill_1}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot isShowLabels="false" isShowTickLabels="false" isShowTickMarks="false">
+						<plot orientation="Horizontal"/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+						<categoryAxisFormat>
+							<axisFormat>
+								<labelFont/>
+								<tickLabelFont/>
+							</axisFormat>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat>
+								<labelFont/>
+								<tickLabelFont/>
+							</axisFormat>
+						</valueAxisFormat>
+						<rangeAxisMaxValueExpression><![CDATA[1000000]]></rangeAxisMaxValueExpression>
+					</barPlot>
+				</barChart>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="19" width="379" height="33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Sans" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monthly Feeder Billing Summary]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

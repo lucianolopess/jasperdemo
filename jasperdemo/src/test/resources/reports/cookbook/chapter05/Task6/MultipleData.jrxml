@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2015-01-21T01:27:02 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MultipleData" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="70d6f40f-b14a-492c-b1fd-973956dafd3a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="jasperdb6"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\ProjetosBpms\\wizard\\src\\main\\resources\\reports\\cookbook\\chapter05\\Task6\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ProductName" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT
+     "public"."CustomerInvoices"."CustomerName",
+     sum("public"."CustomerInvoices"."InvoiceValue")
+FROM
+     "public"."CustomerInvoices"
+GROUP BY
+     "public"."CustomerInvoices"."CustomerName"]]>
+	</queryString>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sum" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Customer" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{CustomerName}]]></groupExpression>
+		<groupHeader>
+			<band height="36"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="21"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement x="109" y="0" width="342" height="37" uuid="1fd6fb48-203d-4569-9e7d-a18ff526e9a8"/>
+				<textElement>
+					<font fontName="Verdana" size="24" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Monthly Customer Invoices]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<elementGroup>
+				<textField>
+					<reportElement x="138" y="-30" width="248" height="25" uuid="196942d4-782d-48a4-af6a-50d0615001e0"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CustomerName}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="28" y="-30" width="100" height="20" uuid="de38140f-4ce7-4618-89c5-5e002266978e"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Customer Name :]]></text>
+				</staticText>
+			</elementGroup>
+			<elementGroup/>
+			<subreport>
+				<reportElement x="0" y="0" width="80" height="15" uuid="39882cde-2a6e-4764-9ed5-f981739529a2"/>
+				<subreportParameter name="InvoiceID"/>
+				<subreportParameter name="CustomerName">
+					<subreportParameterExpression><![CDATA[$F{CustomerName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[java.sql.DriverManager.getConnection("jdbc:postgresql://localhost:5432/jasperdb6a", "postgres", "postgres")]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "CustHistorySubreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="0" y="0" width="80" height="15" uuid="1bdc2756-f92a-43a2-8b4f-80f4ee3cc75b"/>
+				<subreportParameter name="CustomerName">
+					<subreportParameterExpression><![CDATA[$F{CustomerName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "ProductInvoices.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="10" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="27" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="10" splitType="Stretch"/>
+	</summary>
+</jasperReport>

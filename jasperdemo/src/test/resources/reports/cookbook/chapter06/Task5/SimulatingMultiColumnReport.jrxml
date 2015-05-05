@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SimulatingMultiColumnReport" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\ProjetosBpms\\wizard\\src\\main\\resources\\reports\\cookbook\\chapter06\\Task5\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+	* 
+FROM 
+	"CustomerInvoices"
+Order By 
+	"CustomerName"]]>
+	</queryString>
+	<field name="InvoiceID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CustomerName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ProductName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoicePeriod" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="InvoiceValue" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="FirstRecordOfANewGroup" class="java.lang.Integer" resetType="Group" resetGroup="Customer" calculation="Count">
+		<variableExpression><![CDATA[$V{FirstRecordOfANewGroup} + 1]]></variableExpression>
+	</variable>
+	<group name="Customer">
+		<groupExpression><![CDATA[$F{CustomerName}]]></groupExpression>
+		<groupHeader>
+			<band height="41">
+				<staticText>
+					<reportElement x="6" y="16" width="68" height="16" forecolor="#333333"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Invoices of]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="74" y="14" width="157" height="26" forecolor="#333333"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CustomerName}]]></textFieldExpression>
+				</textField>
+				<elementGroup/>
+				<staticText>
+					<reportElement x="348" y="15" width="165" height="20" forecolor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Monthly Order History]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="115" y="16" width="325" height="37"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monthly Customer Invoices]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="15" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="29" backcolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="6" y="2" width="55" height="28" forecolor="#FFFFFF"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice 
+Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="8" width="100" height="16" forecolor="#FFFFFF"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="8" width="69" height="16" forecolor="#FFFFFF"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="8" width="79" height="16" forecolor="#FFFFFF"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Value($)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<subreport>
+				<reportElement x="6" y="4" width="305" height="16" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$V{FirstRecordOfANewGroup} == 0]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="CustomerName">
+					<subreportParameterExpression><![CDATA[$F{CustomerName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "CustomerInvoicesSubreport.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="345" y="4" width="210" height="16" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$V{FirstRecordOfANewGroup} == 0]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="CustomerName">
+					<subreportParameterExpression><![CDATA[$F{CustomerName}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "MonthlyOrderHistorySubreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="20" splitType="Stretch"/>
+	</summary>
+</jasperReport>

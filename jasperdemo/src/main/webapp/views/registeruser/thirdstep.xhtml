@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/wizardtemplate.xhtml">
+	<ui:param name="title" value="Third step" />
+	<ui:define name="stepBody">
+		<h:outputLabel value="Phone:" />
+		<h:inputText value="#{userWizard.user.phone}" />
+		<h:outputLabel value="Mobile:" />
+		<h:inputText value="#{userWizard.user.mobile}" />
+		<h:outputLabel value="Email:" />
+		<h:inputText value="#{userWizard.user.email}" />
+	</ui:define>
+</ui:composition>

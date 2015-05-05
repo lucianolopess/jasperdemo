@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<eventLog>
+    <meterheader>
+    	<consumerId>User001</consumerId>
+    	<meterId>111111111</meterId>
+    	<currentDate>01-09-09</currentDate>
+    	<currentTime>10:45:20</currentTime>
+    	<connectionDate>10-07-08</connectionDate>
+    </meterheader>
+    <security>
+    	<event>
+    		<name>Program Modify</name>
+    		<occuranceDate>04-07-09</occuranceDate>
+    		<occuranceTime>13:25:18</occuranceTime>
+		<recoveryDate>04-07-09</recoveryDate>
+		<recoveryTime>16:00:55</recoveryTime>
+    	</event>
+	<event>
+		<name>Cover Open</name>
+		<occuranceDate>25-06-09</occuranceDate>
+		<occuranceTime>08:58:13</occuranceTime>
+		<recoveryDate>25-06-09</recoveryDate>
+		<recoveryTime>09:14:10</recoveryTime>
+	</event>
+	<event>
+		<name>Event Log Clear</name>
+		<occuranceDate>20-06-09</occuranceDate>
+		<occuranceTime>04:02:57</occuranceTime>
+		<recoveryDate>20-06-09</recoveryDate>
+		<recoveryTime>08:02:55</recoveryTime>
+	</event>
+	<event>
+		<name>Clear Load Profile</name>
+		<occuranceDate>20-06-09</occuranceDate>
+		<occuranceTime>04:02:52</occuranceTime>
+		<recoveryDate>20-06-09</recoveryDate>
+		<recoveryTime>08:02:55</recoveryTime>
+	</event>
+	</security>
+	<disconnection>
+		<disconnectionPhaseA>
+			<event>
+				<name>Disconnection PhaseA</name>
+				<occuranceDate>20-06-09</occuranceDate>
+				<occuranceTime>09:01:19</occuranceTime>
+				<recoveryDate>20-06-09</recoveryDate>
+				<recoveryTime>09:14:55</recoveryTime>
+			</event>
+		</disconnectionPhaseA>
+	</disconnection>
+	<disconnection>		
+		<disconnectionPhaseB>
+			<event>
+				<name>Disconnection PhaseB</name>
+				<occuranceDate>20-06-09</occuranceDate>
+				<occuranceTime>09:01:19</occuranceTime>
+				<recoveryDate>20-06-09</recoveryDate>
+				<recoveryTime>09:14:50</recoveryTime>
+			</event>
+		</disconnectionPhaseB>
+	</disconnection>
+	<ctBypass>
+		<event>
+			<name>CT Bypass-Phase A Occurance</name>
+			<occuranceDate>12-05-09</occuranceDate>
+			<occuranceTime>11:12:03</occuranceTime>
+			<recoveryDate></recoveryDate>
+			<recoveryTime></recoveryTime>
+		</event>
+	</ctBypass>
+</eventLog>
